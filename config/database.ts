@@ -7,12 +7,12 @@ export default ({ env }) => {
     mysql: {
       connection: {
         host: env('DATABASE_HOST', '127.0.0.1'),
-        port: env.int('DATABASE_PORT', 3306),
+        port: env.int('DATABASE_PORT', 3306), // Railway dùng port 35579 từ .env
         database: env('DATABASE_NAME', 'strapi'),
         user: env('DATABASE_USERNAME', 'root'),
         password: env('DATABASE_PASSWORD', ''),
         ssl: env.bool('DATABASE_SSL', false)
-          ? { rejectUnauthorized: false } // fix self-signed cert
+          ? { rejectUnauthorized: false } // fix self-signed certificate trên Railway
           : false,
       },
       pool: {
@@ -20,6 +20,7 @@ export default ({ env }) => {
         max: env.int('DATABASE_POOL_MAX', 10),
       },
     },
+
     postgres: {
       connection: {
         host: env('DATABASE_HOST', '127.0.0.1'),
@@ -36,6 +37,7 @@ export default ({ env }) => {
         max: env.int('DATABASE_POOL_MAX', 10),
       },
     },
+
     sqlite: {
       connection: {
         filename: path.join(
